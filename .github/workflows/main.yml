@@ -1,33 +1,35 @@
-name: CI/CD Pipeline
+name: Build APK
 
 on:
   push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. سحب الكود من المستودع
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      # 2. إعداد بيئة Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: '20' # يمكنك تغيير الإصدار حسب ما يتطلبه مشروعك
-          cache: 'npm'
-
-      # 3. تثبيت الحزم (إذا كان الملف في مجلد فرعي، أضف working-directory)
-      - name: Install dependencies
+          node-version: 20
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - name: Install
         run: npm install
-        # working-directory: ./path-to-your-folder # قم بإلغاء التفعيل واكتب مسار المجلد إذا كان package.json ليس في الجذر
-
-      # 4. بناء التطبيق
-      - name: Build application
-        run: npm run build
-        # working-directory: ./path-to-your-folder # قم بإلغاء تفعيلها هنا أيضاً إذا استخدمتها في الخطوة السابقة
+      - name: Add Android platform
+        run: npx cap add android
+      - name: Sync web files
+        run: npx cap sync android
+      - name: Build debug APK
+        working-directory: android
+        run: |
+          chmod +x gradlew
+          ./gradlew assembleDebug
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: kawthar-school-apk
+          path: android/app/build/outputs/apk/debug/app-debug.apk
