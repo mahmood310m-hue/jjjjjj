@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>مدرسة الكوثر الأهلية</title>
+<style>
+:root{
+  --deep:#2E6B6F; --mist:#DCE8EC; --sage:#E6EEE8; --paper:#F6F9F9;
+  --ink:#24373A; --soft:#6B8083; --gold:#C8A862; --line:#D3E0E1;
+}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%}
+body{font-family:"Noto Sans Arabic","Noto Naskh Arabic",Tahoma,sans-serif;background:var(--paper);color:var(--ink);line-height:1.8;font-size:16px;
+  padding-top:env(safe-area-inset-top);}
+header{background:var(--deep);color:#fff;padding:14px 18px 34px;position:relative;display:flex;align-items:center;gap:12px}
+header img{width:46px;height:46px}
+header h1{font-size:18px;font-weight:700;line-height:1.4}
+header small{opacity:.8;font-size:13px}
+.wave{position:absolute;bottom:-1px;left:0;width:100%;height:26px}
+.ticker{display:flex;align-items:center;gap:10px;margin:6px 16px 0;background:var(--sage);border-radius:12px;padding:5px 6px 5px 12px;max-width:620px}
+.ticker b{background:var(--deep);color:#fff;border-radius:9px;padding:0 12px;font-size:13px;flex:none}
+.tk{position:relative;flex:1;height:28px;overflow:hidden}
+.tk span{position:absolute;left:0;top:0;white-space:nowrap;line-height:28px;font-size:14px;color:var(--ink);animation:ltr var(--dur,20s) linear infinite}
+.tk i{font-style:normal;margin-inline-end:48px}
+@keyframes ltr{from{transform:translateX(-100%)}to{transform:translateX(var(--cw,300px))}}
+@media (prefers-reduced-motion:reduce){.tk span{animation:none;left:auto;right:0}}
+main{padding:6px 16px 96px;max-width:620px;margin:0 auto}
+section{display:none}
+section.on{display:block}
+h2{font-size:19px;margin:18px 0 10px;color:var(--deep)}
+.hero{background:var(--sage);border-radius:18px;padding:20px;margin-top:14px}
+.hero p{color:var(--soft);font-size:15px}
+.hero b{font-size:21px;color:var(--deep);display:block}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;text-align:right;font:inherit;color:inherit;cursor:pointer}
+.tile strong{display:block;color:var(--deep)}
+.tile span{font-size:13px;color:var(--soft)}
+.item{background:#fff;border-right:4px solid var(--deep);border-radius:10px;padding:12px 14px;margin-bottom:10px}
+.item time{font-size:12.5px;color:var(--soft)}
+.item h3{font-size:16px;color:var(--deep)}
+.item p{font-size:14.5px}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 10px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:4px 16px;font:inherit;font-size:14px;color:var(--soft);white-space:nowrap}
+.chip.on{background:var(--deep);border-color:var(--deep);color:#fff}
+.stu{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.stu-top{display:flex;align-items:center;gap:12px;cursor:pointer}
+.av{width:44px;height:44px;border-radius:50%;background:var(--mist);color:var(--deep);display:grid;place-items:center;font-weight:700;flex:none}
+.av.g{background:var(--gold);color:#fff}
+.stu-top div{flex:1}
+.stu-top strong{display:block;line-height:1.4}
+.stu-top small{color:var(--soft)}
+.avg{font-size:20px;font-weight:700;color:var(--deep)}
+.trend{font-size:12.5px}
+.up{color:#3F7D5A}.down{color:#A5675D}.flat{color:var(--soft)}
+.bar{height:8px;background:var(--mist);border-radius:8px;overflow:hidden;margin-top:10px}
+.bar i{display:block;height:100%;background:linear-gradient(270deg,var(--deep),#6FA3A6);border-radius:8px}
+.det{display:none;margin-top:12px;border-top:1px dashed var(--line);padding-top:10px}
+.stu.open .det{display:block}
+.row{display:grid;grid-template-columns:1fr 38px;gap:10px;align-items:center;font-size:14px;margin-bottom:6px}
+.row .bar{margin:0;grid-column:1/-1;height:6px}
+.note{font-size:12.5px;color:var(--soft);margin-top:10px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden}
+td,th{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);font-size:14.5px}
+th{background:var(--mist);color:var(--deep)}
+.stage{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+.stage h3{color:var(--deep)}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tags span{background:var(--sage);border-radius:8px;padding:2px 10px;font-size:13px}
+nav{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);display:flex;padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;border:0;background:none;font:inherit;font-size:12px;color:var(--soft);padding:8px 0 6px}
+nav button svg{display:block;margin:0 auto 2px;width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--deep);font-weight:700}
+a.call{display:block;background:var(--deep);color:#fff;text-align:center;border-radius:12px;padding:10px;text-decoration:none;margin-top:12px}
+</style>
+</head>
+<body>
+<header>
+  <img src="logo.svg" alt="شعار المدرسة">
+  <div><h1 id="sName"></h1><small id="sMotto"></small></div>
+  <svg class="wave" viewBox="0 0 400 26" preserveAspectRatio="none"><path d="M0 14 C60 0 110 26 200 14 C290 2 340 26 400 12 L400 26 L0 26Z" fill="#F6F9F9"/></svg>
+</header>
+<div class="ticker" role="marquee" aria-label="شريط الأخبار"><b>أخبار</b><div class="tk" id="tk"><span id="tkText"></span></div></div>
+<main>
+  <section id="home" class="on">
+    <div class="hero"><b id="hTitle"></b><p>مدرسة أهلية مختلطة تجمع التعليم الرصين بروح الأسرة الواحدة.</p></div>
+    <div class="grid" id="tiles"></div>
+    <h2>آخر الأخبار</h2><div id="homeNews"></div>
+  </section>
+  <section id="news"><h2>الأخبار والإعلانات</h2><div id="newsList"></div></section>
+  <section id="top">
+    <h2>تقدّم الطلبة المتفوقين</h2>
+    <div class="chips" id="chips"></div>
+    <div id="stuList"></div>
+    <p class="note">اضغط على اسم الطالب لعرض درجات المواد. البيانات الحالية تجريبية.</p>
+  </section>
+  <section id="stages"><h2>المراحل الدراسية</h2><div id="stageList"></div></section>
+  <section id="contact">
+    <h2>التواصل مع المدرسة</h2>
+    <table id="ct"></table>
+    <a class="call" id="callBtn">اتصل بالمدرسة</a>
+  </section>
+</main>
+<nav id="nav"></nav>
+<script src="data.js"></script>
+<script>
+const $ = id => document.getElementById(id);
+const ar = n => String(n).replace(/\d/g, d => '٠١٢٣٤٥٦٧٨٩'[d]);
+const TABS = [
+  ['home','الرئيسية','<path d="M3 11l9-8 9 8M5 10v10h14V10"/>'],
+  ['news','الأخبار','<path d="M4 5h13v14H4zM17 9h3v10h-3M7 9h7M7 13h7"/>'],
+  ['top','المتفوقون','<circle cx="12" cy="9" r="5"/><path d="M8.5 13.5L7 21l5-3 5 3-1.500-7.500"/>'],
+  ['stages','المراحل','<path d="M2 9l10-5 10 5-10 5zM6 11.500V16c3 2.500 9 2.500 12 0v-4.500"/>'],
+  ['contact','تواصل','<path d="M5 4h4l2 5-2.500 1.500a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/>']
+];
+function show(id){
+  document.querySelectorAll('section').forEach(s => s.classList.toggle('on', s.id === id));
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.id === id));
+  scrollTo(0,0);
+}
+$('nav').innerHTML = TABS.map(t => `<button data-id="${t[0]}" class="${t[0]==='home'?'on':''}"><svg viewBox="0 0 24 24">${t[2]}</svg>${t[1]}</button>`).join('');
+$('nav').onclick = e => { const b = e.target.closest('button'); if (b) show(b.dataset.id); };
+
+$('sName').textContent = SCHOOL.name + ' ' + SCHOOL.type;
+$('sMotto').textContent = SCHOOL.motto;
+$('hTitle').textContent = 'أهلًا بكم في ' + SCHOOL.name;
+$('tiles').innerHTML = [['top','المتفوقون','تقدّم الطلبة'],['news','الأخبار','إعلانات المدرسة'],['stages','المراحل','المواد والصفوف'],['contact','تواصل','هاتف وعنوان']]
+  .map(t => `<button class="tile" data-go="${t[0]}"><strong>${t[1]}</strong><span>${t[2]}</span></button>`).join('');
+$('tiles').onclick = e => { const b = e.target.closest('[data-go]'); if (b) show(b.dataset.go); };
+
+
+$('tkText').innerHTML = TICKER.map(t => `<i>${t}</i>`).join('');
+(function(){ const w = $('tkText').scrollWidth, c = $('tk').clientWidth;
+  $('tk').style.setProperty('--cw', c + 'px');
+  $('tk').style.setProperty('--dur', Math.max(12, (w + c) / 55) + 's'); })();
+
+const newsHTML = list => list.map(n => `<div class="item"><time>${n.date}</time><h3>${n.title}</h3><p>${n.body}</p></div>`).join('');
+$('homeNews').innerHTML = newsHTML(NEWS.slice(0,2));
+$('newsList').innerHTML = newsHTML(NEWS);
+
+$('stageList').innerHTML = STAGES.map(s => `<div class="stage"><h3>المرحلة ${s.name}</h3><small>الصفوف: ${s.grades}</small><div class="tags">${s.subjects.map(x => `<span>${x}</span>`).join('')}</div></div>`).join('');
+
+let filter = 'all';
+const chipDefs = [['all','الكل']].concat(STAGES.map(s => [s.id, s.name]));
+$('chips').innerHTML = chipDefs.map(c => `<button class="chip ${c[0]==='all'?'on':''}" data-f="${c[0]}">${c[1]}</button>`).join('');
+$('chips').onclick = e => { const b = e.target.closest('.chip'); if (!b) return; filter = b.dataset.f;
+  document.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', c === b)); drawStudents(); };
+
+function drawStudents(){
+  const list = STUDENTS.filter(s => filter === 'all' || s.stage === filter).sort((a,b) => b.avg - a.avg);
+  $('stuList').innerHTML = list.map((s,i) => {
+    const st = STAGES.find(x => x.id === s.stage);
+    const tr = s.change > 0 ? `<span class="trend up">▲ ${ar(s.change)}</span>` : s.change < 0 ? `<span class="trend down">▼ ${ar(-s.change)}</span>` : `<span class="trend flat">ثابت</span>`;
+    return `<div class="stu"><div class="stu-top"><div class="av ${i<3?'g':''}">${ar(i+1)}</div>
+      <div><strong>${s.name}</strong><small>${s.cls}</small></div>
+      <div style="flex:none;text-align:left"><span class="avg">${ar(s.avg)}٪</span><br>${tr}</div></div>
+      <div class="bar"><i style="width:${s.avg}%"></i></div>
+      <div class="det">${st.subjects.map((m,k) => `<div class="row"><span>${m}</span><b>${ar(s.marks[k])}</b><div class="bar"><i style="width:${s.marks[k]}%"></i></div></div>`).join('')}</div></div>`;
+  }).join('') || '<p class="note">لا توجد بيانات لهذه المرحلة.</p>';
+}
+$('stuList').onclick = e => { const t = e.target.closest('.stu-top'); if (t) t.parentElement.classList.toggle('open'); };
+drawStudents();
+
+$('ct').innerHTML = `<tr><th>الهاتف</th><td>${SCHOOL.phone}</td></tr><tr><th>العنوان</th><td>${SCHOOL.address}</td></tr><tr><th>الدوام</th><td>${SCHOOL.hours}</td></tr>`;
+$('callBtn').href = 'tel:' + SCHOOL.phone.replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d));
+</script>
+</body>
+</html>
