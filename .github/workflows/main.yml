@@ -1,0 +1,33 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. سحب الكود من المستودع
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. إعداد بيئة Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # يمكنك تغيير الإصدار حسب ما يتطلبه مشروعك
+          cache: 'npm'
+
+      # 3. تثبيت الحزم (إذا كان الملف في مجلد فرعي، أضف working-directory)
+      - name: Install dependencies
+        run: npm install
+        # working-directory: ./path-to-your-folder # قم بإلغاء التفعيل واكتب مسار المجلد إذا كان package.json ليس في الجذر
+
+      # 4. بناء التطبيق
+      - name: Build application
+        run: npm run build
+        # working-directory: ./path-to-your-folder # قم بإلغاء تفعيلها هنا أيضاً إذا استخدمتها في الخطوة السابقة
